@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BANNER</title>
+	<link rel="stylesheet" href="style.css">
+
+	 <script language="javascript">
+        function _politeLoad(urls, onComplete) {
+            var l = urls.length,
+                loaded = 0,
+                checkProgress = function() {
+                    if (++loaded === l && onComplete) {
+                        onComplete();
+                    }
+                },
+                i;
+            for (i = 0; i < l; i++) {
+                _loadScript(urls[i], checkProgress);
+            }
+        }
+        function _loadScript(url, callback){
+
+            var script = document.createElement("script")
+            script.type = "text/javascript";
+
+            if (script.readyState){  //IE
+                script.onreadystatechange = function(){
+                    if (script.readyState == "loaded" ||
+                            script.readyState == "complete"){
+                        script.onreadystatechange = null;
+                        callback();
+                    }
+                };
+            } else {  //Others
+                script.onload = function(){
+                    callback();
+                };
+            }
+
+            script.src = url;
+            document.getElementsByTagName("head")[0].appendChild(script);
+        }
+        function pageLoadedHandler() {
+           
+            _politeLoad([
+
+                //'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js',
+                'https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js',
+                //'dev/lib/Physics2DPlugin.min.js',
+                //'dev/lib/ThrowPropsPlugin.min.js',
+                //'lib/Physics2DPlugin.js',
+                //'lib/ThrowPropsPlugin.js',
+                'script.js'
+            ], function() {
+                //console.log('init');
+                init();
+
+            });        
+        }
+    </script>
+
+</head>
+<body onload="pageLoadedHandler();">
+
+   <!--  <div id="banner"></div> -->
+
+<div class="presentationContainer">
+      
+    <!-- BEGIN animation HTML ////////////////// -->  
+    <div class="container" >
+    
+    
+        <div id="contain" class="contain">
+
+            <div class="background-colors">
+            </div>
+            
+            <!-- radial pattern svg -- path data added via vanilla js -->
+            <svg id="pattern" viewBox="0 0 300 250">
+                <!-- <clipPath id="radial" ><path class="addPath"/></clipPath> -->
+                <clipPath id="radialLights"><path class="addPath"/></clipPath>     
+            </svg> 
+
+            <!-- // CARS, frames 1--3  -->
+            <div class ="carPlace carPlace3">
+                <div class="car car_03"></div>
+                <div class="car car_03 lights"></div>
+            </div>
+            <div class ="carPlace carPlace2">
+                <div class="car car_02"></div>
+                <div class="car car_02 lights"></div>
+            </div>
+            <div class ="carPlace carPlace1">
+                <div class="car car_01"></div>
+                <div class="car car_01 lights"></div>
+            </div>
+            
+            <!-- // COPY, frames 1--3  -->
+            <div id="copy1" class="copy">
+                <p>
+                    <span id="copy1a">THE NEW</span>
+                    <span id="copy1b">MINI COOPER S.</span>
+                </p>
+            </div>
+            <div id="copy2" class="copy">
+                <p>
+                    <span id="copy2a">SMALL CAR</span>
+                    <span id="copy2b">BIG PLEASURE.</span>
+                </p>
+            </div>
+            <div id="copy3" class="copy">
+                <p>
+                     <span id="copy3a">????????????</span>
+                     <span id="copy3b">???</span>
+                </p>
+            </div>
+
+            <!-- // CARS, frame 5  -->
+            <div class="finalCars">
+                <div class="cars cars_01"></div>
+                <div class="cars cars_02"></div>
+                <div class="cars cars_03"></div>
+            </div>
+
+            <div id="lightsEffect">
+            </div> 
+
+
+        </div>
+
+
+            
+
+        <div id="clickLayer">
+            <div  class="borderLayer"></div>
+            <div class="ctaPlace">
+                <button id="cta" class="zoom">
+                    <svg version="1.1"  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 35.6 31.5" >
+                        <polygon points="1.6,4.3 13.1,15.7 1.6,27.2 10.2,27.2 21.7,15.7 10.2,4.3 "/>
+                        <polygon points="13.3,4.3 24.8,15.7 13.3,27.2 21.9,27.2 33.3,15.7 21.9,4.3 "/>
+                    </svg>
+                    Explore Now.
+                </button>
+            </div>
+            <div class="minilogo" >
+                <div class="bgBox"></div>
+                <img src="img/miniLogo.png" />
+            </div>
+            <div class="minilogo minilogo2" >
+                <img src="img/miniLogo.png" />
+            </div>
+            <div class="colorSelector" >
+
+                <p>CHANGE COLOR:</p>
+                <div id="colorBoxBlue" class="colorBox blue selected"><div></div></div>
+                <div id="colorBoxYellow" class="colorBox yellow"><div></div></div>
+                <div id="colorBoxRed" class="colorBox red"><div></div></div>
+            </div>
+            <div class="bgBox bgBox2"></div>
+        </div>
+
+    </div><!-- END animation HTML ////////////////// -->
+      
+      
+      
+      
+      
+      
+<!-- storyboard: inline styles here for easy on/off visibility in dev tools -->
+      
+     <!-- <storyboard>
+        <img style="display:block"      src="http://ericbintner.com/servedfiles/BBtest/storyboard/5.png"/>
+        <img style="display:block"      src="http://ericbintner.com/servedfiles/BBtest/storyboard/4.png"/>
+        <img style="display:block"      src="http://ericbintner.com/servedfiles/BBtest/storyboard/3.png"/>
+        <img style="display:block"      src="http://ericbintner.com/servedfiles/BBtest/storyboard/2.png"/>
+        <img style="display:block"      src="http://ericbintner.com/servedfiles/BBtest/storyboard/1.png"/> 
+      </storyboard>-->
+
+
+  </div> <!-- end presentationContainer -->
+
+
+
+
+
+
+
+
+	
+</body>
+</html>

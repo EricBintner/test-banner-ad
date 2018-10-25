@@ -1,0 +1,462 @@
+ 
+// presentationContainer is only here to present animation to Craft
+// -- remove before production -- 
+.presentationContainer {    
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+
+    storyboard{
+      width:300px;
+      height: 250px;
+      display:block;
+      position: absolute;
+      z-index: 0;
+      top: calc(30vh + 150px); 
+
+      img {
+        position: absolute;
+        display: none;
+        top:0;
+        width:300px;
+        height: 250px;
+      }
+    }
+}
+
+
+    
+.presentationContainer .container{
+    z-index: 1;
+    #clickLayer{
+     // pointer-events: none; // TESTING ONLY
+    }
+}
+/* end presetation css */
+
+
+
+
+
+
+
+//  COLORS
+$color-blue:    #07a2d4;
+$color-yellow:  #dd8601;
+$color-red:     #93121b;
+
+
+//  FONTS
+// @font-face {
+//     font-family: 'MiniGlobal';
+//     src: url('./fonts/mibd.ttf');
+//     font-weight: 700;
+// }
+@font-face {
+    font-family: 'MiniGlobal';
+    src: url('./fonts/mibd-regular.ttf');
+    font-weight: 400;
+}
+
+
+
+//  CONTAINER
+.borderLayer,
+.container {
+  width:   300px;
+  height:  250px;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  min-width:300px;
+}
+.borderLayer{
+  position:absolute;
+  border: 8px solid $color-blue;
+  top:0px;
+  left:0px;
+  z-index:9999;
+}
+
+
+    .blurOutEffect{
+            filter: blur(40);
+            @keyframes blurAnimation {
+              0%   { filter: blur(0); }
+              100% { filter: blur(18px); }
+            }
+            animation: blurAnimation 3.75s; 
+            //animation-timing-function: ;
+    }
+
+
+
+.contain {
+  width:   298px;
+  height:  248px;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  top:1px;
+  left:1px;
+  background-color: $color-blue;
+  perspective: 1000px;
+  //perspective-origin: center -1000px;
+  transform-style: preserve-3d;
+
+    // initial placement 
+
+
+    .background-colors{
+      height:100%;
+      z-index: -1;
+    }
+
+
+    // Radial pattern
+    svg#pattern{
+        position:absolute;
+
+        #radialLights { 
+          path{
+            transform-origin: 50% 50%;
+            transform: rotate(0) scale(0.75);
+          } 
+        }
+        #radialLights { 
+          path{
+            @keyframes rotateRadialLights {
+              0%   { transform: rotate(  0deg) scale(0.75); }
+              100% { transform: rotate(360deg) scale(0.75); }
+            }
+            animation: rotateRadialLights 28s ; //infinite; 
+            //animation-timing-function: linear;
+          } 
+        }
+    }
+
+
+
+
+
+    .carPlace{
+      position:absolute;
+      top: 0px;
+      width: 300px;
+      transform: translateZ(-1200px) rotateY(-60deg);
+      perspective: 1080px;
+      transform-style: preserve-3d;
+      
+      div{
+
+        &.car{
+          top: 0px;
+          width: 300px;
+          height:250px;
+          transform: translateZ(360px);
+          background-size: 100%; 
+          background-repeat: no-repeat;
+          z-index: 20;
+        }
+        &.car.lights{
+          background-blend-mode: color-dodge;
+          position: absolute;
+          z-index: 10;
+          clip-path: url(#radialLights);
+
+        }
+        &.car_01{
+          //transform: translateZ(360px);// scale(0.25);
+            background-image: url("/img/01_car.jpg"); 
+          &.lights{
+            background-image: url("/img/01_light.png"),url("/img/01_car.jpg"); 
+            //clip-path: url(#radial);
+          }
+        }
+        &.car_02{
+          //transform: translateZ(360px);
+          opacity:0;
+          background-image: url("/img/02_car.jpg"); 
+          &.lights{
+            background-image: url("/img/01_light.png"),url("/img/02_car.jpg"); 
+          }
+        }
+        &.car_03{
+          //transform: translateZ(360px);
+          opacity:0;
+          background-image: url("/img/03_car.jpg"); 
+          &.lights{
+            background-image: url("/img/01_light.png"),url("/img/03_car.jpg"); 
+          }
+        }
+      }
+    }
+
+
+
+    #lightsEffect{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 300px;
+      height:250px;
+      -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 33%, black 40%, black 77%, rgba(0, 0, 0, 0) 82%);
+
+        .light{
+          position: absolute;
+          height: 18px;
+          width: 80px;
+          transform: translateX(-400px);
+          filter: blur(2px);
+
+            .lightObject{
+              //background-color: #fff;
+              height: 100%;
+              width: 100%;
+              opacity:0.75;
+            // Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+10,ffffff+78&1+10,0+78 
+            //background: -moz-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 15%, rgba(255,255,255,0) 40%); 
+            //background: -webkit-radial-gradient(center, ellipse cover, rgba(255,255,255,1) 15%,rgba(255,255,255,0) 40%); 
+            background: radial-gradient(ellipse at center, rgba(255,255,255,1) 15%,rgba(255,255,255,0) 40%);
+            //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); 
+            }
+        }
+    }
+
+
+    div.finalCars{
+      top: 0px;
+      width: 300px;
+      height:250px;
+      position: absolute;
+      opacity: 0;
+      filter: blur(24px);
+      transition: filter 3s;
+      &.unblur{
+          filter: blur( 0px);
+      }
+
+        .cars{
+          top: 71px;
+          width: 300px;
+          height:250px;
+          position: absolute;
+          background-size: 100%; 
+          background-repeat: no-repeat;
+          z-index: 20;
+          
+
+          
+        
+          &.cars_01{
+            background-image: url("/img/final_bg1.jpg"); 
+          }
+          &.cars_02{
+            background-image: url("/img/final_bg2.jpg"); 
+            opacity: 0;
+          }
+          &.cars_03{
+            background-image: url("/img/final_bg3.jpg"); 
+            opacity: 0;
+          }
+        }
+    }
+     
+    .copy p {
+      font-family: 'MiniGlobal';
+      //font-family: 'Source Sans Pro', sans-serif;
+      color: #FFF;
+      display: block;
+      text-align: left; 
+      margin:0;
+      font-weight: 400;
+    }
+    .copy span{
+        display: block;
+    }
+    #copy1, #copy2 {
+      position: absolute;
+      top:20px;
+      width: 400px;
+      left: 10px;
+
+      #copy1a, #copy1b, #copy2a, #copy2b {
+        opacity: 0;
+        margin: 0;
+        line-height: 1.1em;
+        
+      }
+      #copy1a, #copy2a{
+        font-size:22px;
+        letter-spacing: 5px;
+      }
+      #copy1b, #copy2b {
+        font-size: 30px;
+        letter-spacing: 4px;
+      }
+      
+    }
+ 
+}
+ 
+
+
+    .minilogo{
+      position: absolute;
+      top: 210px;
+      width: 58px;
+      left: 218px;
+      z-index: 11000;
+      img{
+        width: 58px;
+        z-index: 1;
+        opacity:0;
+      }
+
+    }
+      .bgBox{
+        position: absolute;
+        height: 30px;
+        top:4px;
+        left:-80px;
+        width: 300px;
+        z-index: -1;
+        //border: 1px solid #fff;
+
+// Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#03abdb+0,03abdb+30&0+0,1+30 
+// background: -moz-linear-gradient(left, rgba(7, 162, 212,0) 0%, rgba(7, 162, 212,1) 30%); 
+// background: -webkit-linear-gradient(left, rgba(7, 162, 212,0) 0%,rgba(7, 162, 212,1) 30%); 
+background: linear-gradient(to right, rgba(7, 162, 212,0) 0%,rgba(7, 162, 212,1) 30%); 
+// filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0003abdb', endColorstr='#03abdb',GradientType=1 ); 
+      }
+
+  
+    
+      .bgBox.bgBox2{
+        position: absolute;
+        top: 5px;
+        height: 45px;
+        left: -80px;
+        width: 320px;
+         z-index: 10;
+         opacity:0;
+//background: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 30%); 
+//background: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%,rgba(0, 0, 0, 1) 30%); 
+background: linear-gradient(to right, rgba(0, 0, 0,0) 0%,rgba(0, 0, 0,1) 30%); 
+//filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=1 ); 
+      
+      }
+  
+
+#clickLayer {
+
+    .ctaPlace{
+      position: absolute;
+      //transform: translateX(50%) translateY(204px) ;
+      top: 210px;
+      left:11px;
+       z-index: 10000;
+
+    } 
+
+  .colorSelector{
+      position: absolute;
+      top:20px;
+      left:10px;
+      z-index: 9;
+      opacity:0;
+      width: 225px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      p{
+        font-family: 'MiniGlobal';
+          font-size: 14.5px;
+          color: #ffffff;
+          font-weight: 400;
+          margin:5px 8px 5px 8px;
+      }
+      .colorBox{
+        height:20px;
+        width: 20px;
+        background-color: #F0F;
+        margin:4px;
+        border: 1px solid #000;
+        cursor: pointer;
+        transition: border-color 0.25s;
+     /* IE6-9 */
+      }
+      .colorBox:hover,
+      .colorBox.selected{
+        border: 1px solid #e5e5e5;
+      }
+      .colorBox > div{
+        width: 100%;
+        height:100%;
+        // light gradient on color buttons
+        // Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+48&0+0,0.3+48,0.02+53,0+99 
+        //background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0.02) 53%, rgba(255,255,255,0) 99%);
+        //background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,0.22) 50%,rgba(255,255,255,0.02) 53%,rgba(255,255,255,0) 99%); 
+        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,0.22) 50%,rgba(255,255,255,0.02) 53%,rgba(255,255,255,0) 99%); 
+        //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=0 );
+      }
+      .colorBox.blue{
+        background-color: $color-blue;
+      }
+      .colorBox.yellow{
+        background-color: $color-yellow;
+      }
+      .colorBox.red{
+        background-color: $color-red;
+      }
+    }
+
+    button.zoom {
+      padding: 4px;
+      background-color: #000;
+      transition: background-color .4s; 
+      width: 144px;
+      height: 30px;
+      letter-spacing: 0.05em;
+      border: none;
+      z-index: 5000;
+      opacity:0;
+      //perspective: 100px;
+      //font-family: 'Helvetica Neue', Helvetica, Arial, 'sans-serif';
+      font-family: 'MiniGlobal';
+      font-size: 14.5px;
+      color: #ffffff;
+      font-weight: 400;
+      text-align:center;
+      text-transform: uppercase;
+      cursor: pointer;
+      //transform: scale(0.9) translateZ(0);
+
+       svg {
+          width: 14px;
+
+          polygon{
+            fill:#fff;
+            stroke-width: 1px;
+            stroke: #000;
+            transform: translateY(3.25px);
+          }
+      }
+      &:hover {
+          //transform: scale(1) translateZ(0); 
+          background-color: #555;
+
+      }  
+
+  }
+}
+
+
+

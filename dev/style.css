@@ -1,0 +1,392 @@
+.presentationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+.presentationContainer storyboard {
+  width: 300px;
+  height: 250px;
+  display: block;
+  position: absolute;
+  z-index: 0;
+  top: calc(30vh + 150px);
+}
+
+.presentationContainer storyboard img {
+  position: absolute;
+  display: none;
+  top: 0;
+  width: 300px;
+  height: 250px;
+}
+
+.presentationContainer .container {
+  z-index: 1;
+}
+
+/* end presetation css */
+@font-face {
+  font-family: 'MiniGlobal';
+  src: url("./fonts/mibd-regular.ttf");
+  font-weight: 400;
+}
+
+.borderLayer,
+.container {
+  width: 300px;
+  height: 250px;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  min-width: 300px;
+}
+
+.borderLayer {
+  position: absolute;
+  border: 8px solid #07a2d4;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+}
+
+.blurOutEffect {
+  filter: blur(40);
+  animation: blurAnimation 3.75s;
+}
+
+@keyframes blurAnimation {
+  0% {
+    filter: blur(0);
+  }
+  100% {
+    filter: blur(18px);
+  }
+}
+
+.contain {
+  width: 298px;
+  height: 248px;
+  display: block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  background-color: #07a2d4;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.contain .background-colors {
+  height: 100%;
+  z-index: -1;
+}
+
+.contain svg#pattern {
+  position: absolute;
+}
+
+.contain svg#pattern #radialLights path {
+  transform-origin: 50% 50%;
+  transform: rotate(0) scale(0.75);
+}
+
+.contain svg#pattern #radialLights path {
+  animation: rotateRadialLights 28s;
+}
+
+@keyframes rotateRadialLights {
+  0% {
+    transform: rotate(0deg) scale(0.75);
+  }
+  100% {
+    transform: rotate(360deg) scale(0.75);
+  }
+}
+
+.contain .carPlace {
+  position: absolute;
+  top: 0px;
+  width: 300px;
+  transform: translateZ(-1200px) rotateY(-60deg);
+  perspective: 1080px;
+  transform-style: preserve-3d;
+}
+
+.contain .carPlace div.car {
+  top: 0px;
+  width: 300px;
+  height: 250px;
+  transform: translateZ(360px);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+
+.contain .carPlace div.car.lights {
+  background-blend-mode: color-dodge;
+  position: absolute;
+  z-index: 10;
+  clip-path: url(#radialLights);
+}
+
+.contain .carPlace div.car_01 {
+  background-image: url("/img/01_car.jpg");
+}
+
+.contain .carPlace div.car_01.lights {
+  background-image: url("/img/01_light.png"), url("/img/01_car.jpg");
+}
+
+.contain .carPlace div.car_02 {
+  opacity: 0;
+  background-image: url("/img/02_car.jpg");
+}
+
+.contain .carPlace div.car_02.lights {
+  background-image: url("/img/01_light.png"), url("/img/02_car.jpg");
+}
+
+.contain .carPlace div.car_03 {
+  opacity: 0;
+  background-image: url("/img/03_car.jpg");
+}
+
+.contain .carPlace div.car_03.lights {
+  background-image: url("/img/01_light.png"), url("/img/03_car.jpg");
+}
+
+.contain #lightsEffect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 250px;
+  -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 33%, black 40%, black 77%, rgba(0, 0, 0, 0) 82%);
+}
+
+.contain #lightsEffect .light {
+  position: absolute;
+  height: 18px;
+  width: 80px;
+  transform: translateX(-400px);
+  filter: blur(2px);
+}
+
+.contain #lightsEffect .light .lightObject {
+  height: 100%;
+  width: 100%;
+  opacity: 0.75;
+  background: radial-gradient(ellipse at center, white 15%, rgba(255, 255, 255, 0) 40%);
+}
+
+.contain div.finalCars {
+  top: 0px;
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  opacity: 0;
+  filter: blur(24px);
+  transition: filter 3s;
+}
+
+.contain div.finalCars.unblur {
+  filter: blur(0px);
+}
+
+.contain div.finalCars .cars {
+  top: 71px;
+  width: 300px;
+  height: 250px;
+  position: absolute;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  z-index: 20;
+}
+
+.contain div.finalCars .cars.cars_01 {
+  background-image: url("/img/final_bg1.jpg");
+}
+
+.contain div.finalCars .cars.cars_02 {
+  background-image: url("/img/final_bg2.jpg");
+  opacity: 0;
+}
+
+.contain div.finalCars .cars.cars_03 {
+  background-image: url("/img/final_bg3.jpg");
+  opacity: 0;
+}
+
+.contain .copy p {
+  font-family: 'MiniGlobal';
+  color: #FFF;
+  display: block;
+  text-align: left;
+  margin: 0;
+  font-weight: 400;
+}
+
+.contain .copy span {
+  display: block;
+}
+
+.contain #copy1, .contain #copy2 {
+  position: absolute;
+  top: 20px;
+  width: 400px;
+  left: 10px;
+}
+
+.contain #copy1 #copy1a, .contain #copy1 #copy1b, .contain #copy1 #copy2a, .contain #copy1 #copy2b, .contain #copy2 #copy1a, .contain #copy2 #copy1b, .contain #copy2 #copy2a, .contain #copy2 #copy2b {
+  opacity: 0;
+  margin: 0;
+  line-height: 1.1em;
+}
+
+.contain #copy1 #copy1a, .contain #copy1 #copy2a, .contain #copy2 #copy1a, .contain #copy2 #copy2a {
+  font-size: 22px;
+  letter-spacing: 5px;
+}
+
+.contain #copy1 #copy1b, .contain #copy1 #copy2b, .contain #copy2 #copy1b, .contain #copy2 #copy2b {
+  font-size: 30px;
+  letter-spacing: 4px;
+}
+
+.minilogo {
+  position: absolute;
+  top: 210px;
+  width: 58px;
+  left: 218px;
+  z-index: 11000;
+}
+
+.minilogo img {
+  width: 58px;
+  z-index: 1;
+  opacity: 0;
+}
+
+.bgBox {
+  position: absolute;
+  height: 30px;
+  top: 4px;
+  left: -80px;
+  width: 300px;
+  z-index: -1;
+  background: linear-gradient(to right, rgba(7, 162, 212, 0) 0%, #07a2d4 30%);
+}
+
+.bgBox.bgBox2 {
+  position: absolute;
+  top: 5px;
+  height: 45px;
+  left: -80px;
+  width: 320px;
+  z-index: 10;
+  opacity: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, black 30%);
+}
+
+#clickLayer .ctaPlace {
+  position: absolute;
+  top: 210px;
+  left: 11px;
+  z-index: 10000;
+}
+
+#clickLayer .colorSelector {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  z-index: 9;
+  opacity: 0;
+  width: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#clickLayer .colorSelector p {
+  font-family: 'MiniGlobal';
+  font-size: 14.5px;
+  color: #ffffff;
+  font-weight: 400;
+  margin: 5px 8px 5px 8px;
+}
+
+#clickLayer .colorSelector .colorBox {
+  height: 20px;
+  width: 20px;
+  background-color: #F0F;
+  margin: 4px;
+  border: 1px solid #000;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  /* IE6-9 */
+}
+
+#clickLayer .colorSelector .colorBox:hover,
+#clickLayer .colorSelector .colorBox.selected {
+  border: 1px solid #e5e5e5;
+}
+
+#clickLayer .colorSelector .colorBox > div {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.02) 53%, rgba(255, 255, 255, 0) 99%);
+}
+
+#clickLayer .colorSelector .colorBox.blue {
+  background-color: #07a2d4;
+}
+
+#clickLayer .colorSelector .colorBox.yellow {
+  background-color: #dd8601;
+}
+
+#clickLayer .colorSelector .colorBox.red {
+  background-color: #93121b;
+}
+
+#clickLayer button.zoom {
+  padding: 4px;
+  background-color: #000;
+  transition: background-color .4s;
+  width: 144px;
+  height: 30px;
+  letter-spacing: 0.05em;
+  border: none;
+  z-index: 5000;
+  opacity: 0;
+  font-family: 'MiniGlobal';
+  font-size: 14.5px;
+  color: #ffffff;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#clickLayer button.zoom svg {
+  width: 14px;
+}
+
+#clickLayer button.zoom svg polygon {
+  fill: #fff;
+  stroke-width: 1px;
+  stroke: #000;
+  transform: translateY(3.25px);
+}
+
+#clickLayer button.zoom:hover {
+  background-color: #555;
+}
