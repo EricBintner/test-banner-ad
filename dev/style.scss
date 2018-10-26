@@ -48,14 +48,9 @@ $color-red:     #93121b;
 
 
 //  FONTS
-// @font-face {
-//     font-family: 'MiniGlobal';
-//     src: url('./fonts/mibd.ttf');
-//     font-weight: 700;
-// }
 @font-face {
     font-family: 'MiniGlobal';
-    src: url('./fonts/mibd-regular.ttf');
+    src: url('./fonts/mibd-regular.woff');
     font-weight: 400;
 }
 
@@ -174,26 +169,26 @@ $color-red:     #93121b;
         }
         &.car_01{
           //transform: translateZ(360px);// scale(0.25);
-            background-image: url("/img/01_car.jpg"); 
+            background-image: url("img/01_car.jpg"); 
           &.lights{
-            background-image: url("/img/01_light.png"),url("/img/01_car.jpg"); 
+            background-image: url("img/01_light.png"),url("img/01_car.jpg"); 
             //clip-path: url(#radial);
           }
         }
         &.car_02{
           //transform: translateZ(360px);
           opacity:0;
-          background-image: url("/img/02_car.jpg"); 
+          background-image: url("img/02_car.jpg"); 
           &.lights{
-            background-image: url("/img/01_light.png"),url("/img/02_car.jpg"); 
+            background-image: url("img/01_light.png"),url("img/02_car.jpg"); 
           }
         }
         &.car_03{
           //transform: translateZ(360px);
           opacity:0;
-          background-image: url("/img/03_car.jpg"); 
+          background-image: url("img/03_car.jpg"); 
           &.lights{
-            background-image: url("/img/01_light.png"),url("/img/03_car.jpg"); 
+            background-image: url("img/01_light.png"),url("img/03_car.jpg"); 
           }
         }
       }
@@ -256,14 +251,14 @@ $color-red:     #93121b;
           
         
           &.cars_01{
-            background-image: url("/img/final_bg1.jpg"); 
+            background-image: url("img/final_bg1.jpg"); 
           }
           &.cars_02{
-            background-image: url("/img/final_bg2.jpg"); 
+            background-image: url("img/final_bg2.jpg"); 
             opacity: 0;
           }
           &.cars_03{
-            background-image: url("/img/final_bg3.jpg"); 
+            background-image: url("img/final_bg3.jpg"); 
             opacity: 0;
           }
         }
@@ -428,8 +423,6 @@ background: linear-gradient(to right, rgba(0, 0, 0,0) 0%,rgba(0, 0, 0,1) 30%);
       border: none;
       z-index: 5000;
       opacity:0;
-      //perspective: 100px;
-      //font-family: 'Helvetica Neue', Helvetica, Arial, 'sans-serif';
       font-family: 'MiniGlobal';
       font-size: 14.5px;
       color: #ffffff;
