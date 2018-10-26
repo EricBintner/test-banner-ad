@@ -19,6 +19,7 @@ function init() {
     var car2 = new TimelineMax();
     var carMove = new TimelineMax();
     var carMove2 = new TimelineMax();
+    var light1 = new TimelineMax();
 
     
     var main = new TimelineMax(),
@@ -42,24 +43,24 @@ function init() {
       redBox.classList.add(sel);
       blueBox.classList.remove(sel);
       yellowBox.classList.remove(sel);
-      TweenMax.to(".finalCars .cars_03", 1, {opacity: 1 , ease: Power2.easeOut });
-      TweenMax.to(".finalCars .cars_01, .finalCars .cars_02", 0.8, {opacity: 0 , ease: Power3.easeIn });
+      TweenLite.to(".finalCars .cars_03", 1, {opacity: 1 , ease: Power2.easeOut });
+      TweenLite.to(".finalCars .cars_01, .finalCars .cars_02", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
     blueBox.addEventListener("click", clickBlue);
     function clickBlue() {
       redBox.classList.remove(sel);
       blueBox.classList.add(sel);
       yellowBox.classList.remove(sel);
-      TweenMax.to(".finalCars .cars_01", 1, {opacity: 1 , ease: Power2.easeOut });
-      TweenMax.to(".finalCars .cars_02, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
+      TweenLite.to(".finalCars .cars_01", 1, {opacity: 1 , ease: Power2.easeOut });
+      TweenLite.to(".finalCars .cars_02, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
     yellowBox.addEventListener("click", clickYellow);
     function clickYellow() {
       redBox.classList.remove(sel);
       blueBox.classList.remove(sel);
       yellowBox.classList.add(sel);
-      TweenMax.to(".finalCars .cars_02", 1, {opacity: 1 , ease: Power2.easeOut });
-      TweenMax.to(".finalCars .cars_01, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
+      TweenLite.to(".finalCars .cars_02", 1, {opacity: 1 , ease: Power2.easeOut });
+      TweenLite.to(".finalCars .cars_01, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
 
 
@@ -147,7 +148,7 @@ function init() {
       var lightDelay = 0.0375;
 
 
-      TweenMax.staggerFromTo("#lightsEffect .light", lightTime, {x: 350 },{ x: -400, ease: Expo.easeInOut, delay: 0 }, lightDelay )
+      light1.staggerFromTo("#lightsEffect .light", lightTime, {x: 350 },{ x: -400, ease: Expo.easeInOut, delay: 0 }, lightDelay )
 
       frame1   
         .to(".borderLayer",         0,      { opacity: "1", borderColor: colorBlue, borderWidth: 1 , overwrite:false  }, 0) 
@@ -211,7 +212,7 @@ function init() {
       .to("#copy2a, #copy2b ",      2.3, { opacity:0, ease: Expo.easeOut, className:"+=blurOutEffect" }, 0.25 )
       .to("#copy2a, #copy2b ",      2,  { y:"-=80", autoRound:false, letterSpacing: "2", ease: Sine.easeIn, overwrite:false},0.45)
       
-      .to("#cta",                 1,    { opacity: 0,  ease: Power2.easeOut }, 0.75)  
+      .to("#cta",                 0.5,    { opacity: 0,  ease: Power2.easeOut }, 0.5)  
       .to(".borderLayer",           0.5,  { borderColor: colorBlue, borderWidth: 8},1.75) 
       .to(".minilogo:not(.minilogo2)",            0.66,    { opacity: 1, scale: 3.4,  ease: Power2.easeOut,  x: -98,  }, 1.75)
       .to(".minilogo:not(.minilogo2)",            0.66,    { ease: Expo.easeOut,  y:-91 , overwrite:false}, 1.75)
