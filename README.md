@@ -1,2 +1,6 @@
 # test-banner-ad
-code test for banner ad animation ability
+javascript animation code test
+
+Run:  
+$ npm install  
+$ gulp
