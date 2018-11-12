@@ -191,6 +191,33 @@ $color-red:     #93121b;
             background-image: url("img/01_light.png"),url("img/03_car.jpg"); 
           }
         }
+        &.rims{
+          position: absolute;
+          top: 153px;
+          width: 350px;
+          height:35px;
+          transform: translateZ(360px);
+          background-size: 100%; 
+          background-repeat: no-repeat;
+          z-index: 20; 
+          -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.15) 10%, black 30%, black 85%, rgba(0, 0, 0, 0.75) 100%);
+
+          &>div{
+              width: 35px;
+              height:35px;
+              background-size: cover;
+              position: absolute;
+              opacity: 0.8;
+          }
+          .rim1{
+              background-image: url("img/rim.png"); 
+              left:45px;
+          }
+          .rim2{
+              background-image: url("img/rim.png"); 
+              left:219px;
+          }
+        }
       }
     }
 

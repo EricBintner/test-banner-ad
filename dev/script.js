@@ -15,50 +15,50 @@ function init() {
     var colorRed    = '#93121b';
 
     // init
-    var car = new TimelineMax();
-    var car2 = new TimelineMax();
-    var carMove = new TimelineMax();
-    var carMove2 = new TimelineMax();
-    var light1 = new TimelineMax();
+    var car      = new TimelineLite(),
+        car2     = new TimelineLite(),
+        carMove  = new TimelineLite(),
+        carMove2 = new TimelineLite(),
+        light1   = new TimelineLite();
 
     
-    var main = new TimelineMax(),
-      frame1 = new TimelineMax(),
-      frame2 = new TimelineMax(),
-      frame3 = new TimelineMax(),
-      frame4 = new TimelineMax(),
-      frame5 = new TimelineMax();
+    var main = new TimelineLite(),
+      frame1 = new TimelineLite(),
+      frame2 = new TimelineLite(),
+      frame3 = new TimelineLite(),
+      frame4 = new TimelineLite(),
+      frame5 = new TimelineLite();
 
 
 
 
     // interactive color picker click handlers
-    var redBox    = document.getElementById("colorBoxRed");
-    var blueBox   = document.getElementById("colorBoxBlue");
-    var yellowBox = document.getElementById("colorBoxYellow");
-    var sel = "selected";
+    var r_Box   = document.getElementById("colorBoxRed");
+    var b_Box   = document.getElementById("colorBoxBlue");
+    var y_Box   = document.getElementById("colorBoxYellow");
+    var sel     = "selected" ;
 
-    redBox.addEventListener("click", clickRed);
+    r_Box.addEventListener("click", clickRed);
     function clickRed() {
-      redBox.classList.add(sel);
-      blueBox.classList.remove(sel);
-      yellowBox.classList.remove(sel);
+      r_Box.classList.add(sel);
+      b_Box.classList.remove(sel);
+      y_Box.classList.remove(sel);
       TweenLite.to(".finalCars .cars_03", 1, {opacity: 1 , ease: Power2.easeOut });
       TweenLite.to(".finalCars .cars_01, .finalCars .cars_02", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
-    blueBox.addEventListener("click", clickBlue);
+    b_Box.addEventListener("click", clickBlue);
     function clickBlue() {
-      redBox.classList.remove(sel);
-      blueBox.classList.add(sel);
-      yellowBox.classList.remove(sel);
+      r_Box.classList.remove(sel);
+      b_Box.classList.add(sel);
+      y_Box.classList.remove(sel);
       TweenLite.to(".finalCars .cars_01", 1, {opacity: 1 , ease: Power2.easeOut });
       TweenLite.to(".finalCars .cars_02, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
-    yellowBox.addEventListener("click", clickYellow);
+    y_Box.addEventListener("click", clickYellow);
     function clickYellow() {
-      redBox.classList.remove(sel);
-      blueBox.classList.remove(sel);
-      yellowBox.classList.add(sel);
+      r_Box.classList.remove(sel);
+      b_Box.classList.remove(sel);
+      y_Box.classList.add(sel);
       TweenLite.to(".finalCars .cars_02", 1, {opacity: 1 , ease: Power2.easeOut });
       TweenLite.to(".finalCars .cars_01, .finalCars .cars_03", 0.8, {opacity: 0 , ease: Power3.easeIn });
     }
@@ -69,7 +69,7 @@ function init() {
     var lights = "";
 
     for (i = 0; i < 18; i+=1) { 
-        //timeout set so dom order is random
+        //timeout set so DOM order is random
         setTimeout(function(){
 
           var top   = Math.floor((50+(250*Math.random()))/1.5)+10;
@@ -90,8 +90,9 @@ function init() {
 
 
     function carScale(){
+      //TweenLite.to(".rim",  1, { rotation: 360 })
+      TweenLite.to(".rim",  2.2, { rotation: "+=1800", ease: CustomEase.create("custom", "M0,0,C0.082,0.018,0.124,0.034,0.194,0.118,0.264,0.202,0.7,0.814,0.76,0.88,0.832,0.959,0.858,1,1,1"), delay:-0.15 });
       var spd = 0.2;
-      //var or = overwrite:false;
       car2
         .to(".carPlace",  spd, { scale:1.004 , overwrite:false })
         .to(".carPlace",  spd, { scale:1     , overwrite:false })
@@ -144,11 +145,20 @@ function init() {
 
     setTimeout(function(){
       // animation  
+      //TweenLite.to(".rim",  1.45, { rotation: "+=700", ease: CustomEase.create("custom", "M0,0,C0.082,0.018,0.195,0.07,0.274,0.146,0.35,0.22,0.438,0.356,0.48,0.504,0.529,0.68,0.594,0.816,0.654,0.882,0.726,0.961,0.734,1,1,1") });
+TweenLite.to(".rim",  1.4, { rotation: "+=700", ease: CustomEase.create("custom", "M0,0,C0.082,0.018,0.094,0.058,0.164,0.142,0.234,0.226,0.7,0.814,0.76,0.88,0.832,0.959,0.858,1,1,1") });
       var lightTime = 1.5;
       var lightDelay = 0.0375;
 
-
-      light1.staggerFromTo("#lightsEffect .light", lightTime, {x: 350 },{ x: -400, ease: Expo.easeInOut, delay: 0 }, lightDelay )
+      function lightAnimation(){
+        var lightContainer  = document.getElementById('lightsEffect');
+        var lightItem = lightContainer.getElementsByClassName('light');
+        for (var i = 0; i < lightItem.length; ++i) 
+            TweenLite.fromTo('#lightsEffect .light:nth-child('+i+')', lightTime, {x: 350 },{ x: -400, ease: Expo.easeInOut, delay:(0.1+(i/30)) })
+        ;
+      }
+      lightAnimation();
+      //light1.staggerFromTo("#lightsEffect .light", lightTime, {x: 350 },{ x: -400, ease: Expo.easeInOut, delay: 0 }, lightDelay )
 
       frame1   
         .to(".borderLayer",         0,      { opacity: "1", borderColor: colorBlue, borderWidth: 1 , overwrite:false  }, 0) 
@@ -173,7 +183,8 @@ function init() {
       frame2
         .to(".borderLayer",         0.1,    { borderColor: colorYellow }, 0) 
         .to(".background-colors",    0.1,   { backgroundColor: colorYellow }, 0)
-        .staggerFromTo("#lightsEffect .light", lightTime, {x: 400 },{ x: -400, ease: Expo.easeInOut }, lightDelay )
+        //.staggerFromTo("#lightsEffect .light", lightTime, {x: 400 },{ x: -400, ease: Expo.easeInOut }, lightDelay )
+        .add(lightAnimation) 
         .to(".carPlace2 .car",      0.1,    { opacity: 1, ease: Power2.easeInOut }, 0) 
         .to(".carPlace1 .car:not(.lights)", 1.25, {  opacity: 0, ease: Power3.easeOut }, 1) 
         .to(".carPlace1 .car.lights",0.75,  {  opacity: 0, ease: Power2.easeOut}, 1.5) 
@@ -191,8 +202,9 @@ function init() {
         .to(".borderLayer",      0.1,    { borderColor: colorRed }, 0) 
         .to(".background-colors",0.1,    { backgroundColor: colorRed }, 0)
 
-        .staggerFromTo("#lightsEffect .light", lightTime, {x: 400 },{ x: -400, ease: Expo.easeInOut }, lightDelay )
-        
+        //.staggerFromTo("#lightsEffect .light", lightTime, {x: 400 },{ x: -400, ease: Expo.easeInOut }, lightDelay )
+        .add(lightAnimation) 
+
         .to(".carPlace3 .car",   0.1,    { opacity: 1, ease: Power2.easeInOut }, 0) 
         .to(".carPlace2 .car:not(.lights)", 1.25, {  opacity: 0, ease: Power3.easeOut }, 0.75) 
         .to(".carPlace2 .car.lights", 0.75, {  opacity: 0, ease: Power2.easeOut  }, 1.25) 
@@ -202,21 +214,25 @@ function init() {
          
      frame4
       .to(".contain",               0.1,  { backgroundColor: colorRed, ease: Power2.easeOut }, 0)  
+      .to(".rim",  2.2, { rotation: "+=1000", ease: CustomEase.create("custom", "M0,0,C0.082,0.018,0.124,0.034,0.194,0.118,0.264,0.202,0.7,0.814,0.76,0.88,0.832,0.959,0.858,1,1,1"), delay:0.25 })
+
       .to(".carPlace", 1,  { x: "+=520px", ease: Power3.easeIn}, 0.5)
-      .to(".contain",               1.5,  { backgroundColor: "#000", ease: Power2.easeOut })  
-      .to(".carPlace3 .car.lights", 0.5,  { opacity: 0}, 0.25)
-      .to(".carPlace3 .car:not(.lights)", 1.5, {  opacity: 0, overwrite:false, ease: Power3.easeOut }, 0.75)
+
+      .to(".contain",               1,  { backgroundColor: "#000", ease: Power2.easeOut }, "-=1")  
+      .to(".carPlace3 .car.lights", 0.5,  { opacity: 0}, 1)
+      .to(".carPlace3 .car:not(.lights)", 1.5, {  opacity: 0, overwrite:false, ease: Power3.easeOut }, 1)
+
       
-      .to(".background-colors",     1.25,    { opacity: 0}, 0.75) 
+      .to(".background-colors",     0.75,    { opacity: 0}, "-=3") 
       
       .to("#copy2a, #copy2b ",      2.3, { opacity:0, ease: Expo.easeOut, className:"+=blurOutEffect" }, 0.25 )
       .to("#copy2a, #copy2b ",      2,  { y:"-=80", autoRound:false, letterSpacing: "2", ease: Sine.easeIn, overwrite:false},0.45)
       
       .to("#cta",                 0.5,    { opacity: 0,  ease: Power2.easeOut }, 0.5)  
-      .to(".borderLayer",           0.5,  { borderColor: colorBlue, borderWidth: 8},1.75) 
+      .to(".borderLayer",           1,  { borderColor: colorBlue, borderWidth: 8},1.75) 
       .to(".minilogo:not(.minilogo2)",            0.66,    { opacity: 1, scale: 3.4,  ease: Power2.easeOut,  x: -98,  }, 1.75)
       .to(".minilogo:not(.minilogo2)",            0.66,    { ease: Expo.easeOut,  y:-91 , overwrite:false}, 1.75)
-      .to(".minilogo:not(.minilogo2)",     2.25,       { scale: 3.6, ease: Power1.easeOut, overwrite:false} )
+      .to(".minilogo:not(.minilogo2)",     2.25,       { scale: 3.75, ease: Power1.easeOut, overwrite:false} )
       .to(".contain",  0,   { overwrite:false }, "+=0.25")
      ;
             
