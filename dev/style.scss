@@ -218,6 +218,19 @@ $color-red:     #93121b;
               left:219px;
           }
         }
+        &.shadow{
+          transform: translateZ(360px);
+          z-index: 19; 
+          position: absolute;
+          left:0;
+          top: 180px;
+          width: 300px;
+          height:20px;
+          /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+43,000000+75&0.8+43,0+75 */
+background: -moz-radial-gradient(center, ellipse cover, rgba(0,0,0,0.8) 43%, rgba(0,0,0,0) 75%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(0,0,0,0.8) 43%,rgba(0,0,0,0) 75%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, rgba(0,0,0,0.8) 43%,rgba(0,0,0,0) 75%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
       }
     }
 
